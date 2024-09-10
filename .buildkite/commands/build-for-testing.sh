@@ -22,7 +22,7 @@ mkdir -pv ~/.configure/wordpress-ios/secrets
 cp -v fastlane/env/project.env-example ~/.configure/wordpress-ios/secrets/project.env
 
 echo "--- :closed_lock_with_key: Installing Secrets"
-bundle exec fastlane run configure_apply
+# bundle exec fastlane run configure_apply
 
 echo "--- :swift: Setting up Swift Packages"
 install_swiftpm_dependencies
