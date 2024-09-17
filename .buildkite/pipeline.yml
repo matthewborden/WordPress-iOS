@@ -51,6 +51,9 @@ steps:
                 max: 7 # Optional. Removes tarballs older than 7 days.
               paths:
                 - 'vendor/bundle'
+                - '~/Library/Caches/CocoaPods/'
+                - '~/.cocoapods'
+                - "$HOME/Library/Caches/org.swift.swiftpm"
         notify:
           - github_commit_status:
               context: "WordPress Build for Testing"
