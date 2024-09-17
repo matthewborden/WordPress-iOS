@@ -30,8 +30,6 @@ install_swiftpm_dependencies
 echo "--- :hammer_and_wrench: Building"
 bundle exec fastlane build_${APP}_for_testing
 
-ls bundle/vendor
-
 
 # echo "--- :arrow_up: Upload Build Products"
 # tar -cf build-products-${APP}.tar DerivedData/Build/Products/
