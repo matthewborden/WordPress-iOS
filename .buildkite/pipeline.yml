@@ -125,24 +125,18 @@ steps:
         retry:
           manual:
             permit_on_passed: true
-        agents:
-          queue: "linter"
 
       - label: ":swift: SwiftLint"
         command: swiftlint
         notify:
           - github_commit_status:
               context: "SwiftLint"
-        agents:
-          queue: "linter"
 
       - label: "🧹 Lint Translations"
         command: "gplint /workdir/WordPress/Resources/AppStoreStrings.po"
         plugins:
           - docker#v3.8.0:
               image: "public.ecr.aws/automattic/glotpress-validator:1.0.0"
-        agents:
-          queue: "default"
         notify:
           - github_commit_status:
               context: "Lint Translations"
