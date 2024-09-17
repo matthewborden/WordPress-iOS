@@ -36,4 +36,4 @@ bundle exec fastlane build_${APP}_for_testing
 # tar -cf build-products-${APP}.tar DerivedData/Build/Products/
 # upload_artifact build-products-${APP}.tar
 
-./cache.sh save "rubygems-{{ checksum \"Gemfile.lock\" }}-podfile-{{ checksum \"Podfile.lock\" }}"
+.buildkite/commands/cache.sh save "rubygems-{{ checksum \"Gemfile.lock\" }}-podfile-{{ checksum \"Podfile.lock\" }}"
