@@ -2,7 +2,7 @@
 APP=${1:-}
 
 export BUILDKITE_CACHE_MOUNT_PATH="$NSC_CACHE_PATH"
-export BUILDKITE_AGENT_CACHE_PATHS="vendor/bundle,~/Library/Caches/CocoaPods/,~/.cocoapods,$HOME/Library/Caches/org.swift.swiftpm"
+export BUILDKITE_AGENT_CACHE_PATHS="vendor/bundle,Pods,~/Library/Caches/CocoaPods/,~/.cocoapods,$HOME/Library/Caches/org.swift.swiftpm"
 .buildkite/commands/cache.sh restore "rubygems-{{ checksum \"Gemfile.lock\" }}-podfile-{{ checksum \"Podfile.lock\" }}"
 
 # Run this at the start to fail early if value not available
