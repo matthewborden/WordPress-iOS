@@ -1,6 +1,7 @@
 # Most of the steps need to run on a macOS agent, so let's define it as a root property.
 agents:
   queue: mac
+  nsc-cache-tag: 0191caf4-2568-4965-a2be-f7f530c372d2/wordpress-ios
 env:
   IMAGE_ID: $IMAGE_ID
 
