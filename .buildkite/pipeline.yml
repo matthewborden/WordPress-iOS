@@ -50,7 +50,7 @@ steps:
                 path: '/tmp/buildkite-cache' # Defaults to /tmp with v2.4.10+
                 max: 7 # Optional. Removes tarballs older than 7 days.
               paths:
-                - 'bundle/vendor'
+                - 'vendor/bundle'
         notify:
           - github_commit_status:
               context: "WordPress Build for Testing"
