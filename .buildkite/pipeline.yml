@@ -4,6 +4,13 @@ agents:
 env:
   IMAGE_ID: $IMAGE_ID
 
+cache:
+  paths:
+    - "vendor/bundle"
+    - "~/Library/Caches/CocoaPods/"
+    - "~/.cocoapods"
+    - "$HOME/Library/Caches/org.swift.swiftpm"
+
 # This is the default pipeline – it will build and test the app
 steps:
 
