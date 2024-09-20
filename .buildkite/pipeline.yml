@@ -38,6 +38,9 @@ steps:
         key: "build_wordpress"
         command: ".buildkite/commands/build-for-testing.sh wordpress"
         plugins:
+           plugins:
+              - aws-assume-role-with-web-identity:
+                  role-arn: arn:aws:iam::253213882263:role/matt-test-pipeline
           # - $CI_TOOLKIT_PLUGIN: ~
           # - nienbo/cache#v2.4.16:
           #     id: ruby # or ruby-3.0
