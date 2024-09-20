@@ -39,6 +39,6 @@ du -sh DerivedData/Build/Products/
 # tar -I zstd -czf build-products-${APP}.tar DerivedData/Build/Products/
 tar -cf - DerivedData/Build/Products/ | zstd -3 -o build-products-${APP}.tar.zst
 echo "Finished compressing archive"
-buildkite-agent artifact upload build-products-${APP}.tar
+buildkite-agent artifact upload build-products-${APP}.tar.zst
 
 .buildkite/commands/cache.sh save "rubygems-{{ checksum \"Gemfile.lock\" }}-podfile-{{ checksum \"Podfile.lock\" }}"
