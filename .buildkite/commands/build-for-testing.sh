@@ -35,7 +35,8 @@ bundle exec fastlane build_${APP}_for_testing
 echo "--- :arrow_up: Upload Build Products"
 
 echo "Compressing archive"
-tar -I zstd  -czf build-products-${APP}.tar DerivedData/Build/Products/
+du -sh DerivedData/Build/Products/
+tar -czf build-products-${APP}.tar DerivedData/Build/Products/
 echo "Finished compressing archive"
 buildkite-agent artifact upload build-products-${APP}.tar
 
