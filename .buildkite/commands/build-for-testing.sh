@@ -36,7 +36,6 @@ echo "--- :arrow_up: Upload Build Products"
 
 echo "Compressing archive"
 du -sh DerivedData/Build/Products/
-brew install 
 # tar -I zstd -czf build-products-${APP}.tar DerivedData/Build/Products/
 tar -cf - DerivedData/Build/Products/ | zstd -1 -o Products.tar.zst
 echo "Finished compressing archive"
