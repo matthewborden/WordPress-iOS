@@ -40,7 +40,7 @@ steps:
         plugins:
               - aws-assume-role-with-web-identity:
                   role-arn: arn:aws:iam::724772075326:role/matt-test-pipeline
-          # - $CI_TOOLKIT_PLUGIN: ~
+              - $CI_TOOLKIT_PLUGIN: ~
           # - nienbo/cache#v2.4.16:
           #     id: ruby # or ruby-3.0
           #     backend: tarball
