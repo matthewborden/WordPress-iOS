@@ -14,7 +14,10 @@ steps:
     steps:
       - label: "🛠 WordPress Prototype Build"
         command: ".buildkite/commands/prototype-build-wordpress.sh"
-        plugins: [$CI_TOOLKIT_PLUGIN]
+        plugins:
+          - $CI_TOOLKIT_PLUGIN
+          - aws-assume-role-with-web-identity:
+              role-arn: arn:aws:iam::724772075326:role/matt-test-pipeline
         if: "build.pull_request.id != null || build.pull_request.draft"
         notify:
           - github_commit_status:
@@ -22,7 +25,10 @@ steps:
 
       - label: "🛠 Jetpack Prototype Build"
         command: ".buildkite/commands/prototype-build-jetpack.sh"
-        plugins: [$CI_TOOLKIT_PLUGIN]
+        plugins:
+          - $CI_TOOLKIT_PLUGIN
+          - aws-assume-role-with-web-identity:
+              role-arn: arn:aws:iam::724772075326:role/matt-test-pipeline
         if: "build.pull_request.id != null || build.pull_request.draft"
         notify:
           - github_commit_status:
@@ -36,7 +42,10 @@ steps:
       - label: "🛠 :wordpress: Build for Testing"
         key: "build_wordpress"
         command: ".buildkite/commands/build-for-testing.sh wordpress"
-        plugins: [$CI_TOOLKIT_PLUGIN]
+        plugins:
+          - $CI_TOOLKIT_PLUGIN
+          - aws-assume-role-with-web-identity:
+              role-arn: arn:aws:iam::724772075326:role/matt-test-pipeline
         notify:
           - github_commit_status:
               context: "WordPress Build for Testing"
@@ -44,7 +53,10 @@ steps:
       - label: "🛠 :jetpack: Build for Testing"
         key: "build_jetpack"
         command: ".buildkite/commands/build-for-testing.sh jetpack"
-        plugins: [$CI_TOOLKIT_PLUGIN]
+        plugins:
+          - $CI_TOOLKIT_PLUGIN
+          - aws-assume-role-with-web-identity:
+              role-arn: arn:aws:iam::724772075326:role/matt-test-pipeline
         notify:
           - github_commit_status:
               context: "Jetpack Build for Testing"
@@ -55,7 +67,10 @@ steps:
   - label: "🔬 :wordpress: Unit Tests"
     command: ".buildkite/commands/run-unit-tests.sh"
     depends_on: "build_wordpress"
-    plugins: [$CI_TOOLKIT_PLUGIN]
+    plugins:
+      - $CI_TOOLKIT_PLUGIN
+      - aws-assume-role-with-web-identity:
+          role-arn: arn:aws:iam::724772075326:role/matt-test-pipeline
     artifact_paths:
       - "build/results/*"
     notify:
@@ -70,7 +85,10 @@ steps:
       - label: "🔬 :jetpack: UI Tests (iPhone)"
         command: .buildkite/commands/run-ui-tests.sh 'iPhone 15'
         depends_on: "build_jetpack"
-        plugins: [$CI_TOOLKIT_PLUGIN]
+        plugins:
+          - $CI_TOOLKIT_PLUGIN
+          - aws-assume-role-with-web-identity:
+              role-arn: arn:aws:iam::724772075326:role/matt-test-pipeline
         artifact_paths:
           - "build/results/*"
           - "build/results/crashes/*"
@@ -81,7 +99,10 @@ steps:
       - label: "🔬 :jetpack: UI Tests (iPad)"
         command: .buildkite/commands/run-ui-tests.sh 'iPad Pro 13-inch (M4)'
         depends_on: "build_jetpack"
-        plugins: [$CI_TOOLKIT_PLUGIN]
+        plugins:
+          - $CI_TOOLKIT_PLUGIN
+          - aws-assume-role-with-web-identity:
+              role-arn: arn:aws:iam::724772075326:role/matt-test-pipeline
         artifact_paths:
           - "build/results/*"
           - "build/results/crashes/*"
