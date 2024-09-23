@@ -3,7 +3,7 @@ APP=${1:-}
 
 aws s3 cp s3://$ARTIFACT_BUCKET/zstash/zstash_Darwin_arm64.tar.gz .bin/zstash_Darwin_arm64.tar.gz
 tar -xzf .bin/zstash_Darwin_arm64.tar.gz -C .bin
-xattr -d com.apple.quarantine .bin/zstash
+sudo xattr -d com.apple.quarantine .bin/zstash
 chmod +x .bin/zstash
 
 echo "--- :zstash: Restoring Cache"
