@@ -1,6 +1,8 @@
 # Most of the steps need to run on a macOS agent, so let's define it as a root property.
 agents:
   queue: mac
+  nsc-cache-tag: "wordpress-ios"
+
 env:
   IMAGE_ID: $IMAGE_ID
   ARTIFACT_BUCKET: "pipelines-compute-cache-724772075326-us-east-1-normal"
