@@ -50,7 +50,6 @@ echo "Saving Cache"
 
 .bin/zstash save --local-cache-path $NSC_CACHE_PATH \
   --key '{{ env "BUILDKITE_PIPELINE_NAME" }}/{{ env "BUILDKITE_BRANCH" }}-{{ shasum "./Gemfile.lock" }}-ruby' \
-  --remote-cache-url s3://$ARTIFACT_BUCKET/matt-test-cache/ \
   vendor/bundle
 
 .bin/zstash save --local-cache-path $NSC_CACHE_PATH \
