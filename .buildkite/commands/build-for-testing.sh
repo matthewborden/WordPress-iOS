@@ -60,5 +60,9 @@ echo "Saving Cache"
   Pods
 
 .bin/zstash save --local-cache-path $NSC_CACHE_PATH \
-  --key '{{ env "BUILDKITE_PIPELINE_NAME" }}/{{ env "BUILDKITE_BRANCH" }}-{{ shasum "./Package.resolved" }}-spm' \
+  --key '{{ env "BUILDKITE_PIPELINE_NAME" }}/{{ env "BUILDKITE_BRANCH" }}-{{ shasum "./WordPress.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}-spm' \
   "${HOME}/Library/Caches/org.swift.swiftpm"
+
+.bin/zstash save --local-cache-path $NSC_CACHE_PATH \
+  --key '{{ env "BUILDKITE_PIPELINE_NAME" }}/{{ env "BUILDKITE_BRANCH" }}-{{ env "BUILDKITE_BUILD_ID" }}-DerivedData' \
+  DerivedData/Build/Products/
