@@ -46,9 +46,9 @@ swift package
 echo "--- :hammer_and_wrench: Building"
 bundle exec fastlane build_${APP}_for_testing
 
-echo "--- :arrow_up: Upload Build Products"
-tar -cf build-products-${APP}.tar DerivedData/Build/Products/
-upload_artifact build-products-${APP}.tar
+# echo "--- :arrow_up: Upload Build Products"
+# tar -cf build-products-${APP}.tar DerivedData/Build/Products/
+# upload_artifact build-products-${APP}.tar
 
 echo "Saving Cache"
 .bin/zstash save --local-cache-path $NSC_CACHE_PATH \
