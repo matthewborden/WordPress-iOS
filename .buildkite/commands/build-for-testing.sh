@@ -16,7 +16,7 @@ echo "--- :zstash: Restoring Cache"
   Pods
 
 .bin/zstash restore --local-cache-path $NSC_CACHE_PATH \
-  --key '{{ env "BUILDKITE_PIPELINE_NAME" }}/{{ env "BUILDKITE_BRANCH" }}-{{ shasum "./Package.resolved" }}-spm' \
+  --key '{{ env "BUILDKITE_PIPELINE_NAME" }}/{{ env "BUILDKITE_BRANCH" }}-{{ shasum "./WordPress.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}-spm' \
   "${HOME}/Library/Caches/org.swift.swiftpm"
 
 # Run this at the start to fail early if value not available
