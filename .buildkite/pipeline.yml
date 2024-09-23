@@ -3,6 +3,10 @@ agents:
   queue: mac
 env:
   IMAGE_ID: $IMAGE_ID
+  ARTIFACT_BUCKET: "pipelines-compute-cache-724772075326-us-east-1-normal"
+  ARTIFACT_BUCKET_REGION: "us-east-1"
+  ARTIFACT_ROLE: "arn:aws:iam::724772075326:role/matt-test-pipeline"
+
 
 # This is the default pipeline – it will build and test the app
 steps:
@@ -36,7 +40,10 @@ steps:
       - label: "🛠 :wordpress: Build for Testing"
         key: "build_wordpress"
         command: ".buildkite/commands/build-for-testing.sh wordpress"
-        plugins: [$CI_TOOLKIT_PLUGIN]
+        plugins:
+          - aws-assume-role-with-web-identity#v1.1.0:
+              role-arn: ${ARTIFACT_ROLE}
+          - $CI_TOOLKIT_PLUGIN
         notify:
           - github_commit_status:
               context: "WordPress Build for Testing"
