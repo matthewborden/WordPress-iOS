@@ -7,6 +7,10 @@ tar -xzf .bin/zstash_Darwin_arm64.tar.gz -C .bin
 chmod +x .bin/zstash
 
 echo "--- :zstash: Restoring Cache"
+ls vendor/bundle || true
+ls Pods || true
+ls "${HOME}/Library/Caches/org.swift.swiftpm" || true
+
 .bin/zstash restore --local-cache-path $NSC_CACHE_PATH \
   --key '{{ env "BUILDKITE_PIPELINE_NAME" }}/{{ env "BUILDKITE_BRANCH" }}-{{ shasum "./Gemfile.lock" }}-ruby' \
   vendor/bundle
@@ -18,6 +22,10 @@ echo "--- :zstash: Restoring Cache"
 .bin/zstash restore --local-cache-path $NSC_CACHE_PATH \
   --key '{{ env "BUILDKITE_PIPELINE_NAME" }}/{{ env "BUILDKITE_BRANCH" }}-{{ shasum "./WordPress.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}-spm' \
   "${HOME}/Library/Caches/org.swift.swiftpm"
+
+ls vendor/bundle || true
+ls Pods || true
+ls "${HOME}/Library/Caches/org.swift.swiftpm" || true
 
 # Run this at the start to fail early if value not available
 if [[ "$APP" != "wordpress" && "$APP" != "jetpack" ]]; then
