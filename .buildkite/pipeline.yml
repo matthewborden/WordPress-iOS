@@ -46,6 +46,8 @@ steps:
           - aws-assume-role-with-web-identity#v1.1.0:
               role-arn: ${ARTIFACT_ROLE}
           - $CI_TOOLKIT_PLUGIN
+        agents:
+          nsc-cache-tag: "wordpress-ios/build"
         notify:
           - github_commit_status:
               context: "WordPress Build for Testing"
