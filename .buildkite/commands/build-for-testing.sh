@@ -9,17 +9,14 @@ chmod +x .bin/zstash
 echo "--- :zstash: Restoring Cache"
 .bin/zstash restore --local-cache-path $NSC_CACHE_PATH \
   --key '{{ env "BUILDKITE_PIPELINE_NAME" }}/{{ env "BUILDKITE_BRANCH" }}-{{ shasum "./Gemfile.lock" }}-ruby' \
-  --remote-cache-url s3://$ARTIFACT_BUCKET/matt-test-cache/ \
   vendor/bundle
 
 .bin/zstash restore --local-cache-path $NSC_CACHE_PATH \
   --key '{{ env "BUILDKITE_PIPELINE_NAME" }}/{{ env "BUILDKITE_BRANCH" }}-{{ shasum "./Podfile.lock" }}-pods' \
-  --remote-cache-url s3://$ARTIFACT_BUCKET/matt-test-cache/ \
   Pods
 
 .bin/zstash restore --local-cache-path $NSC_CACHE_PATH \
   --key '{{ env "BUILDKITE_PIPELINE_NAME" }}/{{ env "BUILDKITE_BRANCH" }}-{{ shasum "./WordPress.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}-spm' \
-  --remote-cache-url s3://$ARTIFACT_BUCKET/matt-test-cache/ \
   "${HOME}/Library/Caches/org.swift.swiftpm"
 
 # Run this at the start to fail early if value not available
@@ -58,15 +55,12 @@ echo "Saving Cache"
 
 .bin/zstash save --local-cache-path $NSC_CACHE_PATH \
   --key '{{ env "BUILDKITE_PIPELINE_NAME" }}/{{ env "BUILDKITE_BRANCH" }}-{{ shasum "./Podfile.lock" }}-pods' \
-  --remote-cache-url s3://$ARTIFACT_BUCKET/matt-test-cache/ \
   Pods
 
 .bin/zstash save --local-cache-path $NSC_CACHE_PATH \
   --key '{{ env "BUILDKITE_PIPELINE_NAME" }}/{{ env "BUILDKITE_BRANCH" }}-{{ shasum "./WordPress.xcworkspace/xcshareddata/swiftpm/Package.resolved" }}-spm' \
-  --remote-cache-url s3://$ARTIFACT_BUCKET/matt-test-cache/ \
   "${HOME}/Library/Caches/org.swift.swiftpm"
 
 .bin/zstash save --local-cache-path $NSC_CACHE_PATH \
   --key '{{ env "BUILDKITE_PIPELINE_NAME" }}/{{ env "BUILDKITE_BRANCH" }}-{{ env "BUILDKITE_BUILD_ID" }}-DerivedData' \
-  --remote-cache-url s3://$ARTIFACT_BUCKET/matt-test-cache/ \
   DerivedData/Build/Products/
